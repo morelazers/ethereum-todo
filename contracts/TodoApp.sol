@@ -15,13 +15,14 @@ contract TodoApp {
 	event AddTodo(address indexed _owner, uint newTodoId);
 	function addTodo(string text) returns(bool sufficient) {
 		todos[msg.sender].push(Todo(text, "not_completed", numberOfTodos));
+		numberOfTodos = todos[msg.sender].length;
 		numberOfTodos++;
 		AddTodo(msg.sender, numberOfTodos);
 		return true;
 	}
 
 	function getNumberOfTodos() returns(uint) {
-		return numberOfTodos;
+		return todos[msg.sender].length;
 	}
 
 	function getTodo(uint todoId) returns(string, string, uint) {
