@@ -44,8 +44,6 @@ contract TodoApp {
 	function deleteTodo(uint todoId) returns(bool sufficient) {
 		todos[msg.sender][todoId].status = "deleted";
 		DeleteTodo(msg.sender, todos[msg.sender][todoId].status, todoId);
-		// Not sure why this line causes an out of gas error.
-		// numberOfTodos--;
 		return true;
 	}
 }
